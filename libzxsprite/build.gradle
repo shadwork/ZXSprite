@@ -13,3 +13,13 @@ jar {
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
+
+task runJar { task ->
+    doLast {
+        println new File(".").absolutePath
+        javaexec {
+            main="-jar";
+            args = [".\\build\\libs\\libzxsprite.jar"]
+        }
+    }
+}
